@@ -11,31 +11,44 @@ const refs = {
   lightboxOverlay: document.querySelector(".lightbox__overlay"),
 };
 
-// console.log(refs);
+const createGallery = items
+  .map((el) => {
+    return `<li class = "gallery__item">
+    <a class="gallery__link" href="${el.original}">
+       <image class = "gallery__image" 
+          src = "${el.preview}" 
+          data-source="${el.original}" 
+          alt = "${el.description}">
+       </a>
+     </li>`;
+  })
+  .join("");
 
-const createGallery = ({ original, preview, description }) => {
-  const galleryItem = document.createElement("li");
-  galleryItem.classList.add(".galerry__item");
+refs.gallery.insertAdjacentHTML("beforeend", createGallery);
 
-  const galleryLink = document.createElement("a");
-  galleryLink.classList.add(".gallery__link");
-  galleryLink.setAttribute("href", original);
+// const createGallery = ({ original, preview, description }) => {
+//   const galleryItem = document.createElement("li");
+//   galleryItem.classList.add(".galerry__item");
 
-  const galleryImg = document.createElement("img");
-  galleryImg.classList.add(".gallery__image");
-  galleryImg.setAttribute("src", preview);
-  galleryImg.setAttribute("data-source", original);
-  galleryImg.setAttribute("alt", description);
+//   const galleryLink = document.createElement("a");
+//   galleryLink.classList.add(".gallery__link");
+//   galleryLink.setAttribute("href", original);
 
-  galleryLink.appendChild(galleryImg);
-  galleryItem.appendChild(galleryLink);
-  refs.gallery.appendChild(galleryItem);
+//   const galleryImg = document.createElement("img");
+//   galleryImg.classList.add(".gallery__image");
+//   galleryImg.setAttribute("src", preview);
+//   galleryImg.setAttribute("data-source", original);
+//   galleryImg.setAttribute("alt", description);
 
-  return galleryItem;
-};
+//   galleryLink.appendChild(galleryImg);
+//   galleryItem.appendChild(galleryLink);
+//   refs.gallery.appendChild(galleryItem);
 
-const galleryItems = items.map((item) => createGallery(item));
-refs.gallery.append(...galleryItems);
+//   return galleryItem;
+// };
+
+// const galleryItems = items.map((item) => createGallery(item));
+// refs.gallery.append(...galleryItems);
 
 const openModal = (event) => {
   event.preventDefault();
