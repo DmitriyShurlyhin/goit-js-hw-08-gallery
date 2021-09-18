@@ -13,12 +13,13 @@ const refs = {
 
 const createGallery = items
   .map((el) => {
+    const { original, preview, description } = el;
     return `<li class = "gallery__item">
-    <a class="gallery__link" href="${el.original}">
-       <image class = "gallery__image" 
-          src = "${el.preview}" 
-          data-source="${el.original}" 
-          alt = "${el.description}">
+    <a class="gallery__link" href="${original}">
+       <image class = "gallery__image"
+          src = "${preview}"
+          data-source="${original}"
+          alt = "${description}">
        </a>
      </li>`;
   })
